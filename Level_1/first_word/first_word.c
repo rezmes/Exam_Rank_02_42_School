@@ -3,33 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   first_word.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmesgari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/10 14:01:36 by alex              #+#    #+#             */
-/*   Updated: 2024/03/15 12:56:30 by alex             ###   ########.fr       */
+/*   Created: 2026/03/24 14:52:22 by mmesgari          #+#    #+#             */
+/*   Updated: 2026/03/24 16:36:04 by mmesgari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	first_word(char *str)
+int	skp_wc(char **argv)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] == ' ' || str[i] == '\t')
-		i++;
-	while (str[i] != ' ')
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
+		int	i = 0;
+		while (argv[1][i] == ' ' || argv[1][i] == '\t')
+				i++;
+		return (i);
 }
 
 int	main(int argc, char **argv)
 {
-	if (argc == 2)
-		first_word(argv[1]);
-	write(1, "\n", 1);
-	return (0);
+		int i = 0;
+
+		if (argc == 2)
+		{
+			i = skp_wc(argv);
+			while (argv[1][i] && argv[1][i] != ' ' && argv[1][i] != '\t')
+			{	
+					write(1, &argv[1][i], 1);
+					i++;
+			}
+		}
+		write(1, "\n", 1);
+		return (0);
 }
