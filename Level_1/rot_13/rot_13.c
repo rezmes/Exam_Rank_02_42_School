@@ -3,37 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   rot_13.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmesgari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 00:27:42 by alex              #+#    #+#             */
-/*   Updated: 2024/03/14 14:37:37 by alex             ###   ########.fr       */
+/*   Created: 2026/03/24 17:33:57 by mmesgari          #+#    #+#             */
+/*   Updated: 2026/03/24 17:57:34 by mmesgari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-char	*rot_13(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
-			str[i] = ((str[i] - 'A' + 13) % 26) + 'A';
-		else if (str[i] >= 'a' && str[i] <= 'z')
-			str[i] = ((str[i] - 'a' + 13) % 26) + 'a';
-		write(1, &str[i], 1);
-		i++;
-	}
-	write(1, "\n", 1);
-	return (str);
-}
-
 int	main(int argc, char **argv)
 {
-	if (argc == 2)
-		rot_13(argv[1]);
-	write(1, "\n", 1);
-	return (0);
+		if (argc == 2)
+		{
+				while (*argv[1])
+				{
+						if ((*argv[1]>= 'a' && *argv[1] <= 'm') || (*argv[1]>= 'A' && *argv[1] <= 'M'))
+								*argv[1] += 13;
+						else if ((*argv[1]> 'm' && *argv[1] <= 'z') || (*argv[1]> 'M' && *argv[1] <= 'Z'))
+								*argv[1] -= 13;
+						write(1, argv[1], 1);
+					argv[1]++;
+				}
+		}
+		write (1, "\n", 1);
+		return (0);
 }
