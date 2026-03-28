@@ -12,38 +12,19 @@
 
 unsigned char	reverse_bits(unsigned char octet)
 {
-		int	i = 7;
+		int	i = 0;
 		unsigned char revers = 0;
 		
-		while (i >= 0 )
+		while (i <= 7 )
 		{
-			revers = (octet >> i ) & 1;
-				i--;
+			revers = revers << 1;
+			revers |= ((octet >> i) & 1);
+			i++;
 		}
 		return (revers);
 }
 
-
-
-
 /*
-
-unsigned char	reverse_bits(unsigned char octet)
-{
-	unsigned char	result;
-	int				i;
-
-	i = 8;
-	result = 0;
-	while (i-- > 0)
-	{
-		result = result * 2 + (octet % 2);
-		octet = octet / 2;
-	}
-	return (result);
-}
-
-*/
 
 #include <stdio.h> 
 
@@ -58,3 +39,39 @@ int	main(void)
 	printf("Octeto con bits intercambiados: 0x%X\n", resultado);
 	return (0);
 }
+
+
+*/
+/*
+#include <unistd.h>
+
+
+int main(void)
+{
+        unsigned char test_char = 'A';
+        unsigned char reversed = reverse_bits(test_char);
+
+        int i;
+        char bit;
+
+        i = 7;
+        while (i >= 0)
+        {
+                bit = ((test_char >> i) & 1) + '0'; // تبدیل عدد 0 یا 1 به کاراکتر '0' یا '1'
+                write(1, &bit, 1);
+                i--;
+        }
+        write(1, "\n", 1);
+
+        i = 7;
+        while (i >= 0)
+        {
+                bit = ((reversed >> i) & 1) + '0';
+                write(1, &bit, 1);
+                i--;
+        }
+        write(1, "\n", 1);
+
+        return (0);
+}
+*/
