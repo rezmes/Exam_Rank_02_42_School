@@ -3,13 +3,141 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmesgari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 16:19:47 by alex              #+#    #+#             */
-/*   Updated: 2024/04/11 19:17:41 by alex             ###   ########.fr       */
+/*   Created: 2026/03/30 11:43:11 by mmesgari          #+#    #+#             */
+/*   Updated: 2026/03/30 16:03:36 by mmesgari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+int	ft_atoi_base(const char *str, int str_base)
+{
+		char hex[] ="0123456789abcdef";
+		char hexu[] = "0123456789ABCDEF";
+		int value = 0;
+		int	result = 0;
+		int	i = 0;
+		int	j = 0;
+		int found = 0;	
+		int sign = 1;
+
+		if (str[i] == '-')
+		{
+				sign = -1;
+				i++;
+		}
+
+		while (str[i])
+		{
+				j = 0;
+				found = 0;
+				while (j < str_base)
+				{
+						if (str[i] == hex[j] || str[i] == hexu[j])
+						{
+								value = j;
+								found = 1;
+								break;
+						}
+						j++;
+				}
+				if (found == 0)
+						break;
+				result = (result * str_base) + value;
+				i++;
+		}
+		result *= sign;
+		return (result);
+}
+
+
+#include <stdio.h>
+int	main()
+{
+		char *str;
+		int	n = 16;
+	   	str	= "FF";
+		printf(":%d:\n", ft_atoi_base(str, n));
+		str = "3022";
+		n = 4;
+		printf(":%d:\n", ft_atoi_base(str, n));
+		str = "-119";
+		n = 12;
+		printf(":%d:\n", ft_atoi_base(str, n));
+		str = "44";
+		n = 5;
+		printf(":%d:\n", ft_atoi_base(str, n));
+		str = "12A";
+		n = 10;
+		printf(":%d:\n", ft_atoi_base(str, n));
+		str = "12*3";
+		n = 10;
+		printf(":%d:\n", ft_atoi_base(str, n));
+		str = "1a";
+        n = 16;
+        printf(":%d:\n", ft_atoi_base(str, n));
+
+	return (0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 int	ft_atoi_base(const char *str, int base)
 {
 	char	*number;
@@ -39,7 +167,6 @@ int	ft_atoi_base(const char *str, int base)
 	return (sign * result);
 }
 
-/*
 #include <stdio.h>
 
 int	main(void)
