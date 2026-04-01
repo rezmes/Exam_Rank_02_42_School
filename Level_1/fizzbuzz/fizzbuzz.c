@@ -3,47 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   fizzbuzz.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmesgari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:07:53 by alex              #+#    #+#             */
-/*   Updated: 2024/03/16 16:26:02 by alex             ###   ########.fr       */
+/*   Created: 2026/04/01 16:34:11 by mmesgari          #+#    #+#             */
+/*   Updated: 2026/04/01 16:52:51 by mmesgari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	put_num(int n)
+void	putnbr(int i)
 {
-	char	*decimal;
+		char c;
 
-	decimal = "0123456789";
-	if (n > 9)
-		put_num(n / 10);
-	write(1, &decimal[n % 10], 1);
-}
-
-void	fizzbuzz(int len)
-{
-	int	i;
-
-	i = 1;
-	while (i < len)
-	{
-		if (i % 15 == 0)
-			write(1, "fizzbuzz", 8);
-		else if (i % 3 == 0)
-			write(1, "fizz", 4);
-		else if (i % 5 == 0)
-			write(1, "buzz", 4);
-		else
-			put_num(i);
-		i++;
-		write(1, "\n", 1);
-	}
+		if (i > 9)
+				putnbr(i / 10);
+		c = (i % 10) + '0';
+		write (1, &c, 1);
 }
 
 int	main(void)
 {
-	fizzbuzz(101);
-	return (0);
+		int i = 0;
+		while (i <= 100)
+		{
+			if (!(i % 3) && !(i % 5))
+			{
+					write (1, "fizzbuzz", 8);
+					write (1, "\n", 1);
+			}
+			else if (!(i % 3))
+			{
+					write (1, "fizz", 4);
+					write (1, "\n", 1);
+			}
+			else if (!(i % 5))
+			{
+					write (1, "buzz", 4);
+					write (1, "\n", 1);
+			}
+			else
+			{
+					putnbr(i);
+					write (1, "\n", 1);
+			}
+			i++;
+		}
+		return (0);
 }
